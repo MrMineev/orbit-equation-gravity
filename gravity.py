@@ -100,7 +100,7 @@ class gravity:
 
             orbit_equations = OrbitEquation(bodies[rocket], bodies[main])
             orbit_equations.setup()
-            orbit_equations.info()
+            # orbit_equations.info()
             for thetta in np.arange(0, 2 * np.pi, self.INC):
                 r = orbit_equations.get(thetta)
 
