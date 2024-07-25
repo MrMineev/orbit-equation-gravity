@@ -22,7 +22,7 @@ class Body:
 
     thrust = 0
 
-    direction = [0,0]
+    direction = [0, 0]
     angle = 0
 
     prx = 0

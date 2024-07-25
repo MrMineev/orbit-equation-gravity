@@ -205,13 +205,13 @@ class gravity:
                 
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_w:
-                        self.y += self.MOVEMENT
-                    elif event.key == pygame.K_s:
                         self.y -= self.MOVEMENT
+                    elif event.key == pygame.K_s:
+                        self.y += self.MOVEMENT
                     elif event.key == pygame.K_a:
-                        self.x += self.MOVEMENT
-                    elif event.key == pygame.K_d:
                         self.x -= self.MOVEMENT
+                    elif event.key == pygame.K_d:
+                        self.x += self.MOVEMENT
                     elif event.key == pygame.K_p:
                         self.MOVEMENT += 10
                     elif event.key == pygame.K_l:
@@ -259,10 +259,11 @@ class gravity:
                 width=3
             )
 
-            velocity_x = "{:.2f}".format(body.vx)
-            velocity_y = "{:.2f}".format(body.vy)
-            distance = oper.magnitude(oper.minus([body.px, body.py], [bodies[main].px, bodies[main].py]))
-            velocity_mag = oper.magnitude([body.vx, body.vy])
+            velocity_x = "{:.2f}".format(bodies[rocket].vx)
+            velocity_y = "{:.2f}".format(bodies[rocket].vy)
+            distance = oper.magnitude(oper.minus([bodies[rocket].px, bodies[rocket].py], [bodies[main].px, bodies[main].py]))
+            velocity_mag = oper.magnitude([bodies[rocket].vx, bodies[rocket].vy])
+            speed_val = "{:.2f}".format(velocity_mag)
             mass = bodies[rocket].mass
 
             mu = (bodies[main].mass * bodies[rocket].mass) / (bodies[main].mass + bodies[rocket].mass)
@@ -275,9 +276,11 @@ class gravity:
             texts = [
                 f"Engine = {engine_on}",
                 f"Timestep = {self.timestep} s",
-                f"Distance = {distance} m",
+                f"Angle = {self.angle} deg",
+                f"Distance = {distance / 1000} km",
                 f"Mass of Rocket = {bodies[rocket].mass} kg",
                 f"Velocity = [{velocity_x} m/s, {velocity_y} m/s]",
+                f"Speed = {speed_val} m/s",
                 f"Momentum = {bodies[rocket].mass * velocity_mag} kg m/s",
                 f"Current Time = {current_time // 60} min {current_time % 60} sec",
                 f"",
